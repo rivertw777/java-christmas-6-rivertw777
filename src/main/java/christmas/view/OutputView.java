@@ -3,11 +3,12 @@ package christmas.view;
 import static christmas.view.constants.OutputMessage.ASK_VISIT_DATE;
 import static christmas.view.constants.OutputMessage.HELLO_MESSAGE;
 
-import christmas.view.constants.OutputMessage;
-
 public class OutputView {
-    public static void printOutputMessage(OutputMessage message) {
-        System.out.print(message.getMessage());
+
+    private OutputView(){}
+
+    public static void printErrorMessage(String message) {
+        System.out.print(message);
     }
 
     public static void printNewLine() {
@@ -15,10 +16,14 @@ public class OutputView {
     }
 
     public static void printHelloMessage(){
-        printOutputMessage(HELLO_MESSAGE);
+        System.out.print(HELLO_MESSAGE.getMessage());
     }
 
     public static void printVisitDateAskMessage() {
-        printOutputMessage(ASK_VISIT_DATE);
+        System.out.print(ASK_VISIT_DATE.getMessage());
     }
+
+
+
+
 }
