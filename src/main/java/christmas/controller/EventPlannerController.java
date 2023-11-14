@@ -1,8 +1,6 @@
 package christmas.controller;
 
-import christmas.eventplanner.EventPlanner;
 import christmas.eventplanner.EventPlannerService;
-import christmas.eventplanner.Menu;
 import christmas.eventplanner.Menus;
 import christmas.eventplanner.VisitDate;
 import christmas.utils.exception.EventPlannerException;
@@ -21,15 +19,19 @@ public class EventPlannerController {
     }
 
     public void run(){
+        // 인사 메시지 출력
         view.printHelloMessage();
-        VisitDate visitDate = bookVisitDate();
-        Menus menus = orderMenu();
-        for (Menu menu : menus.getMenus()) {
-            System.out.println("메뉴명: " + menu.getName() + ", 수량: " + menu.getQuantity());
-        }
-        System.out.println(menus.getTotalPrice());
-        EventPlanner eventPlanner = EventPlanner.create(visitDate, menus);
 
+        // 방문 날짜 입력 및 저장
+        VisitDate visitDate = bookVisitDate();
+        service.saveVisitDate(visitDate);
+
+        // 주문 메뉴 입력 및 저장
+        Menus menus = orderMenu();
+        service.saveMenus(menus);
+
+        // 이벤트 혜택 미리보기
+        previewEventBenefits();
     }
 
     private VisitDate bookVisitDate(){
@@ -38,9 +40,8 @@ public class EventPlannerController {
             return VisitDate.create(date);
         } catch (InputException | EventPlannerException e){
             view.printErrorMessage(e.getMessage());
-            bookVisitDate();
+            return bookVisitDate();
         }
-        return null;
     }
 
     private Menus orderMenu() {
@@ -49,9 +50,14 @@ public class EventPlannerController {
             return Menus.create(OrderedMenuInput);
         } catch (InputException | EventPlannerException e) {
             view.printErrorMessage(e.getMessage());
-            orderMenu();
+            return orderMenu();
         }
-        return null;
+    }
+
+    private void previewEventBenefits(){
+        view.printEventBenefitsPreviewMessage();
+        view.printOrderedMenu();
+        view.printTotalPriceBeforeDiscount(service.getTotalPriceBeforeDiscount());
     }
 
 }

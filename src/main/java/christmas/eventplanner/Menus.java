@@ -1,6 +1,5 @@
 package christmas.eventplanner;
 
-import christmas.eventplanner.constants.MenuInfo;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -27,11 +26,9 @@ public class Menus {
     }
 
     public int getTotalPrice() {
-        int totalPrice = 0;
-        for (Menu menu : menus) {
-            totalPrice += menu.getPrice();
-        }
-        return totalPrice;
+        return menus.stream()
+                .mapToInt(Menu::getPrice)
+                .sum();
     }
 
 }

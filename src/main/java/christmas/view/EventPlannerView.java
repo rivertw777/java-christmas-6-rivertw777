@@ -17,8 +17,26 @@ public class EventPlannerView {
 
     // 주문 메뉴 입력
     public static String inputOrderMenu(){
-        outputView.printOrderMenuMessage();
+        outputView.printOrderMenuAskMessage();
         return inputView.input();
+    }
+
+    // 이벤트 혜택 미리보기 메시지 출력
+    public static void printEventBenefitsPreviewMessage(){
+        outputView.printEventBenefitsPreviewMessage();
+        outputView.printNewLine();
+    }
+
+    // 주문 메뉴 출력
+    public static void printOrderedMenu(){
+        outputView.printOrderedMenu();
+        outputView.printNewLine();
+    }
+
+    // 할인 전 총 주문 금액 출력
+    public static void printTotalPriceBeforeDiscount(int price){
+        outputView.printTotalPriceBeforeDiscount(price);
+        outputView.printNewLine();
     }
 
     // 에러 메시지 출력
