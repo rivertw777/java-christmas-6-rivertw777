@@ -1,5 +1,6 @@
 package christmas.view;
 
+import static christmas.view.constants.OutputMessage.ASK_ORDER_MENU;
 import static christmas.view.constants.OutputMessage.ASK_VISIT_DATE;
 import static christmas.view.constants.OutputMessage.HELLO_MESSAGE;
 
@@ -23,7 +24,9 @@ public class OutputView {
         System.out.print(ASK_VISIT_DATE.getMessage());
     }
 
-
+    public static void printOrderMenuMessage() {
+        System.out.print(ASK_ORDER_MENU.getMessage());
+    }
 
 
 }

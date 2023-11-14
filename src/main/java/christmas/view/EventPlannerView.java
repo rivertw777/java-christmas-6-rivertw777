@@ -15,6 +15,12 @@ public class EventPlannerView {
         return inputView.input();
     }
 
+    // 주문 메뉴 입력
+    public static String inputOrderMenu(){
+        outputView.printOrderMenuMessage();
+        return inputView.input();
+    }
+
     // 에러 메시지 출력
     public static void printErrorMessage(String message){
         outputView.printErrorMessage(message);

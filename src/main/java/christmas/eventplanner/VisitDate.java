@@ -13,7 +13,7 @@ public class VisitDate {
         this.date = date;
     }
 
-    public static VisitDate create(int date) {
+    public static VisitDate create(final int date) {
         checkRange(date);
         return new VisitDate(date);
     }
@@ -24,4 +24,7 @@ public class VisitDate {
         }
     }
 
+    public int getDate() {
+        return date;
+    }
 }
