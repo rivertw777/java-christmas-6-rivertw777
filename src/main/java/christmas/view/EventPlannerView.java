@@ -37,6 +37,12 @@ public class EventPlannerView {
     public static void printTotalPriceBeforeDiscount(int price){
         outputView.printTotalPriceBeforeDiscount(price);
         outputView.printNewLine();
+        outputView.printNewLine();
+    }
+
+    // 증정 메뉴 출력
+    public static void printGiftMenu(boolean isSatisfied){
+        outputView.printGiftMenu(isSatisfied);
     }
 
     // 에러 메시지 출력

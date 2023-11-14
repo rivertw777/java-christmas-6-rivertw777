@@ -1,11 +1,14 @@
 package christmas.view;
 
 import static christmas.view.constants.OutputMessage.EVENT_BENEFITS_PREVIEW;
+import static christmas.view.constants.OutputMessage.GIFT_MENU;
 import static christmas.view.constants.OutputMessage.HELLO;
 import static christmas.view.constants.OutputMessage.ASK_ORDER_MENU;
 import static christmas.view.constants.OutputMessage.ASK_VISIT_DATE;
 import static christmas.view.constants.OutputMessage.ORDER_MENU;
+import static christmas.view.constants.OutputMessage.SATISFIED_CASE;
 import static christmas.view.constants.OutputMessage.TOTAL_PRICE_BEFORE_DISCOUNT;
+import static christmas.view.constants.OutputMessage.UNSATISFIED_CASE;
 
 
 public class OutputView {
@@ -43,6 +46,14 @@ public class OutputView {
     public static void printTotalPriceBeforeDiscount(int price){
         System.out.println(TOTAL_PRICE_BEFORE_DISCOUNT.getMessage());
         System.out.printf("%d원", price);
+    }
+
+    public static void printGiftMenu(boolean isSatisfied){
+        System.out.println(GIFT_MENU.getMessage());
+        if (isSatisfied)
+            System.out.println(SATISFIED_CASE.getMessage());
+        else
+            System.out.println(UNSATISFIED_CASE.getMessage());
     }
 
 }

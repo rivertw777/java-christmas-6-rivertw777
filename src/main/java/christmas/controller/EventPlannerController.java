@@ -58,6 +58,7 @@ public class EventPlannerController {
         view.printEventBenefitsPreviewMessage();
         view.printOrderedMenu();
         view.printTotalPriceBeforeDiscount(service.getTotalPriceBeforeDiscount());
+        view.printGiftMenu(service.isTotalPriceSatisfied());
     }
 
 }

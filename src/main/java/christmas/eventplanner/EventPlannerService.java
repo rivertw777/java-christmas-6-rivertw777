@@ -1,5 +1,7 @@
 package christmas.eventplanner;
 
+import static christmas.eventplanner.constants.EventPlannerConstraint.TARGET_PRICE_FOR_GIFT;
+
 public class EventPlannerService {
     private final EventPlannerRepository eventPlannerRepository;
 
@@ -25,6 +27,10 @@ public class EventPlannerService {
 
     public int getTotalPriceBeforeDiscount(){
         return findMenus().getTotalPrice();
+    }
+
+    public boolean isTotalPriceSatisfied() {
+        return findMenus().getTotalPrice() >= TARGET_PRICE_FOR_GIFT.getValue();
     }
 
 }
