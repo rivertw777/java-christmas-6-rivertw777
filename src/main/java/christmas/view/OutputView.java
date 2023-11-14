@@ -10,6 +10,8 @@ import static christmas.view.constants.OutputMessage.SATISFIED_CASE;
 import static christmas.view.constants.OutputMessage.TOTAL_PRICE_BEFORE_DISCOUNT;
 import static christmas.view.constants.OutputMessage.UNSATISFIED_CASE;
 
+import java.util.List;
+
 
 public class OutputView {
 
@@ -35,25 +37,26 @@ public class OutputView {
         System.out.println(ASK_ORDER_MENU.getMessage());
     }
 
-    public static void printEventBenefitsPreviewMessage() {
-        System.out.println(EVENT_BENEFITS_PREVIEW.getMessage());
+    public static void printEventBenefitsPreviewMessage(int date) {
+        System.out.printf(EVENT_BENEFITS_PREVIEW.getMessage(), date);
     }
 
-    public static void printOrderedMenu(){
+    public static void printOrderedMenu(List<String> responses){
         System.out.println(ORDER_MENU.getMessage());
+        responses.forEach(System.out::println);
     }
 
     public static void printTotalPriceBeforeDiscount(int price){
-        System.out.println(TOTAL_PRICE_BEFORE_DISCOUNT.getMessage());
-        System.out.printf("%d원", price);
+        System.out.printf(TOTAL_PRICE_BEFORE_DISCOUNT.getMessage(),price);
     }
 
     public static void printGiftMenu(boolean isSatisfied){
         System.out.println(GIFT_MENU.getMessage());
-        if (isSatisfied)
+        if (isSatisfied) {
             System.out.println(SATISFIED_CASE.getMessage());
-        else
-            System.out.println(UNSATISFIED_CASE.getMessage());
+            return;
+        }
+        System.out.println(UNSATISFIED_CASE.getMessage());
     }
 
 }

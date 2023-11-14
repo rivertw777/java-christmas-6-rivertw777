@@ -25,12 +25,21 @@ public class EventPlannerService {
         return eventPlannerRepository.findMenus();
     }
 
+    // 비즈니스 로직
+    // 방문 날짜 반환
+    public int getVisitDate() {
+        return findVisitDate().getDate();
+    }
+
+    // 할인 전 총 금액 반환
     public int getTotalPriceBeforeDiscount(){
         return findMenus().getTotalPrice();
     }
 
+    // 증정 이벤트를 만족하는지 반환
     public boolean isTotalPriceSatisfied() {
         return findMenus().getTotalPrice() >= TARGET_PRICE_FOR_GIFT.getValue();
     }
+
 
 }

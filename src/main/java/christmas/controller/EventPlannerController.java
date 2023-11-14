@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.eventplanner.EventPlannerService;
 import christmas.eventplanner.Menus;
 import christmas.eventplanner.VisitDate;
+import christmas.eventplanner.dto.OrderedMenusDto;
 import christmas.utils.exception.EventPlannerException;
 import christmas.utils.exception.InputException;
 import christmas.utils.parser.InputParser;
@@ -55,8 +56,9 @@ public class EventPlannerController {
     }
 
     private void previewEventBenefits(){
-        view.printEventBenefitsPreviewMessage();
-        view.printOrderedMenu();
+        view.printEventBenefitsPreviewMessage(service.getVisitDate());
+        OrderedMenusDto orderedMenusDto = new OrderedMenusDto(service.findMenus());
+        view.printOrderedMenu(orderedMenusDto.getResponses());
         view.printTotalPriceBeforeDiscount(service.getTotalPriceBeforeDiscount());
         view.printGiftMenu(service.isTotalPriceSatisfied());
     }

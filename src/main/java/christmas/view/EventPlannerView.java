@@ -1,5 +1,7 @@
 package christmas.view;
 
+import java.util.List;
+
 public class EventPlannerView {
     private static InputView inputView;
     private static OutputView outputView;
@@ -22,14 +24,15 @@ public class EventPlannerView {
     }
 
     // 이벤트 혜택 미리보기 메시지 출력
-    public static void printEventBenefitsPreviewMessage(){
-        outputView.printEventBenefitsPreviewMessage();
+    public static void printEventBenefitsPreviewMessage(int date){
+        outputView.printEventBenefitsPreviewMessage(date);
+        outputView.printNewLine();
         outputView.printNewLine();
     }
 
     // 주문 메뉴 출력
-    public static void printOrderedMenu(){
-        outputView.printOrderedMenu();
+    public static void printOrderedMenu(List<String> responses){
+        outputView.printOrderedMenu(responses);
         outputView.printNewLine();
     }
 
