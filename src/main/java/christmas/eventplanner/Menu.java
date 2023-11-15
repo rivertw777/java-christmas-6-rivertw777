@@ -1,8 +1,10 @@
 package christmas.eventplanner;
 
 import static christmas.eventplanner.constants.EventPlannerConstraint.THIS_YEAR;
+import static christmas.utils.constants.ErrorMessage.NO_SUCH_MENU;
 
 import christmas.eventplanner.constants.MenuInfo;
+import christmas.utils.exception.EventPlannerException;
 import java.util.Arrays;
 
 public class Menu {
@@ -15,6 +17,7 @@ public class Menu {
     }
 
     public static Menu create(final String name, final int quantity) {
+        checkIsValidOrder(name);
         return new Menu(name, quantity);
     }
 
@@ -48,6 +51,14 @@ public class Menu {
                 .filter(menuInfo -> menuInfo.getName().equals(name) && menuInfo.getType().equals("Main"))
                 .mapToInt(menuInfo -> THIS_YEAR.getValue() * quantity)
                 .sum();
+    }
+
+
+    // 메뉴판에 없는 메뉴를 입력했는지 확인
+    private static void checkIsValidOrder(String name) {
+        if (Arrays.stream(MenuInfo.values()).noneMatch(menuInfo -> menuInfo.getName().equals(name))) {
+            throw EventPlannerException.of(NO_SUCH_MENU);
+        }
     }
 
 }

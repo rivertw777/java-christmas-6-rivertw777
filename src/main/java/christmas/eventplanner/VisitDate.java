@@ -2,7 +2,7 @@ package christmas.eventplanner;
 
 import static christmas.eventplanner.constants.EventPlannerConstraint.MAX_DATE;
 import static christmas.eventplanner.constants.EventPlannerConstraint.MIN_DATE;
-import static christmas.utils.constants.ErrorMessage.INVALID_DATE;
+import static christmas.utils.constants.ErrorMessage.OUT_OF_RANGE_DATE;
 
 import christmas.utils.exception.EventPlannerException;
 
@@ -21,7 +21,7 @@ public class VisitDate {
     // 날짜 범위 검증
     private static void checkRange(int date) {
         if (date < MIN_DATE.getValue() || date > MAX_DATE.getValue()) {
-            throw EventPlannerException.of(INVALID_DATE);
+            throw EventPlannerException.of(OUT_OF_RANGE_DATE);
         }
     }
 

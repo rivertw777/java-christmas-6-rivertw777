@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.eventplanner.EventBenefit;
 import christmas.eventplanner.EventPlannerService;
+import christmas.eventplanner.Menu;
 import christmas.eventplanner.Menus;
 import christmas.eventplanner.VisitDate;
 import christmas.eventplanner.dto.BenefitDetailDto;
@@ -10,7 +11,7 @@ import christmas.utils.exception.EventPlannerException;
 import christmas.utils.exception.InputException;
 import christmas.utils.parser.InputParser;
 import christmas.view.EventPlannerView;
-import java.util.Map;
+import java.util.List;
 
 public class EventPlannerController {
     private final EventPlannerService service;
@@ -53,7 +54,7 @@ public class EventPlannerController {
 
     private Menus orderMenu() {
         try {
-            Map<String, Integer> OrderedMenuInput = InputParser.toMenus(view.inputOrderMenu());
+            List<Menu> OrderedMenuInput = InputParser.toMenus(view.inputOrderMenu());
             return Menus.create(OrderedMenuInput);
         } catch (InputException | EventPlannerException e) {
             view.printErrorMessage(e.getMessage());

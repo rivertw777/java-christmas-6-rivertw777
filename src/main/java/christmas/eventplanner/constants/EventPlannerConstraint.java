@@ -12,7 +12,8 @@ public enum EventPlannerConstraint {
     SPECIAL_DAY_DISCOUNT_PRICE(1000),
     NO_DISCOUNT(0),
     DEFAULT_DISCOUNT_PRICE(1000),
-    DAILY_ADDITIONAL_AMOUNT(100);
+    DAILY_ADDITIONAL_AMOUNT(100),
+    MAXIMUM_ORDER_QUANTITY(20);
 
     private final int value;
 

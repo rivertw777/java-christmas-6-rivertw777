@@ -1,11 +1,17 @@
 package christmas.eventplanner;
 
+import christmas.eventplanner.constants.MenuInfo;
+import static christmas.eventplanner.constants.EventPlannerConstraint.MAXIMUM_ORDER_QUANTITY;
 import static christmas.eventplanner.constants.EventPlannerConstraint.MINIMUM_ORDER_PRICE_FOR_BENEFIT;
+import static christmas.utils.constants.ErrorMessage.HAS_DUPLICATE;
+import static christmas.utils.constants.ErrorMessage.HAS_EXCESS_ORDER_COUNT;
+import static christmas.utils.constants.ErrorMessage.HAS_ONLY_BEVERAGE;
 
+import christmas.utils.exception.EventPlannerException;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 public class Menus {
 
@@ -15,12 +21,13 @@ public class Menus {
         this.menus = menus;
     }
 
-    public static Menus create(final Map<String, Integer> OrderedMenuInput) {
-        List<Menu> menuList = OrderedMenuInput.entrySet().stream()
-                .map(entry -> Menu.create(entry.getKey(), entry.getValue()))
-                .collect(Collectors.toList());
+    public static Menus create(final List<Menu> rawMenus) {
 
-        return new Menus(menuList);
+        checkOrderCountWithinLimit(rawMenus);
+        checkHasNoDuplicate(rawMenus);
+        //checkHasOnlyBeverages(rawMenus);
+
+        return new Menus(rawMenus);
     }
 
     public List<Menu> getMenus() {
@@ -50,6 +57,44 @@ public class Menus {
         return menus.stream()
                 .mapToInt(Menu::getMainDiscountPrice)
                 .sum();
+    }
+
+    // 총 주문 개수가 20개 이하인지 확인
+    public static void checkOrderCountWithinLimit(List<Menu> rawMenus) {
+        int totalOrderCount = rawMenus.stream()
+                .mapToInt(Menu::getQuantity)
+                .sum();
+
+        if (totalOrderCount > MAXIMUM_ORDER_QUANTITY.getValue()) {
+            throw EventPlannerException.of(HAS_EXCESS_ORDER_COUNT);
+        }
+    }
+
+
+    // 메뉴 컬렉션에 메뉴의 중복이 없는지 확인
+    public static void checkHasNoDuplicate(List<Menu> rawMenus) {
+        Set<String> menuNames = new HashSet<>();
+
+        for (Menu menu : rawMenus) {
+            String name = menu.getName();
+            if (menuNames.contains(name)) {
+                throw EventPlannerException.of(HAS_DUPLICATE);
+            }
+            menuNames.add(name);
+        }
+    }
+
+    // 메뉴 컬렉션에 음료 타입의 주문만 있는지 확인
+    public static void checkHasOnlyBeverages(List<Menu> rawMenus) {
+        boolean hasBeverage = rawMenus.stream()
+                .map(Menu::getName)
+                .map(MenuInfo::valueOf)
+                .map(MenuInfo::getType)
+                .allMatch(type -> type.equals("Beverage"));
+
+        if (!hasBeverage) {
+            throw EventPlannerException.of(HAS_ONLY_BEVERAGE);
+        }
     }
 
 }
