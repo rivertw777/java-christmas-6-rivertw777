@@ -31,7 +31,6 @@ public class EventPlannerService {
         return eventPlannerRepository.findEventBenefit();
     }
 
-    // 비즈니스 로직
     // 방문 날짜 반환
     public int getVisitDate() {
         return findVisitDate().getDate();

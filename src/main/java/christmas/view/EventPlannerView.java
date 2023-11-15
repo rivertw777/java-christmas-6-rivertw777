@@ -53,8 +53,8 @@ public class EventPlannerView {
     }
 
     // 혜택 내역 출력
-    public static void printBenefitDetail() {
-        outputView.printBenefitDetail();
+    public static void printBenefitDetail(List<String> responses) {
+        outputView.printBenefitDetail(responses);
         outputView.printNewLine();
     }
 
@@ -77,7 +77,6 @@ public class EventPlannerView {
     // 12월 이벤트 배지 출력
     public static void printDecemberEventBadge(int price){
         outputView.printDecemberEventBadge(price);
-        outputView.printNewLine();
     }
 
     // 에러 메시지 출력

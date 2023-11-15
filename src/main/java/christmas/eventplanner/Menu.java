@@ -1,5 +1,7 @@
 package christmas.eventplanner;
 
+import static christmas.eventplanner.constants.EventPlannerConstraint.THIS_YEAR;
+
 import christmas.eventplanner.constants.MenuInfo;
 import java.util.Arrays;
 
@@ -24,6 +26,7 @@ public class Menu {
         return quantity;
     }
 
+    // 메뉴 클래스의 주문 금액 반환
     public int getPrice() {
         return Arrays.stream(MenuInfo.values())
                 .filter(menuInfo -> name.equals(menuInfo.getName()))
@@ -31,17 +34,19 @@ public class Menu {
                 .sum();
     }
 
+    // 메뉴 클래스의 디저트 할인 금액 반환
     public int getDessertDiscountPrice() {
         return Arrays.stream(MenuInfo.values())
                 .filter(menuInfo -> menuInfo.getName().equals(name) && menuInfo.getType().equals("Dessert"))
-                .mapToInt(menuInfo -> 2023 * quantity)
+                .mapToInt(menuInfo -> THIS_YEAR.getValue() * quantity)
                 .sum();
     }
 
+    // 메뉴 클래스의 메인메뉴 할인 금액 반환
     public int getMainDiscountPrice() {
         return Arrays.stream(MenuInfo.values())
                 .filter(menuInfo -> menuInfo.getName().equals(name) && menuInfo.getType().equals("Main"))
-                .mapToInt(menuInfo -> 2023 * quantity)
+                .mapToInt(menuInfo -> THIS_YEAR.getValue() * quantity)
                 .sum();
     }
 

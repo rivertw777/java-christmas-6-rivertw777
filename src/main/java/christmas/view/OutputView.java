@@ -66,8 +66,12 @@ public class OutputView {
         System.out.println(UNSATISFIED_CASE.getMessage());
     }
 
-    public static void printBenefitDetail() {
+    public static void printBenefitDetail(List<String> responses) {
         System.out.println(BENEFIT_DETAIL.getMessage());
+        if (responses.isEmpty()) {
+            System.out.println(UNSATISFIED_CASE.getMessage());
+        }
+        responses.forEach(System.out::println);
     }
 
     public static void printTotalBenefitPrice(String price){

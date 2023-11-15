@@ -10,7 +10,6 @@ import christmas.utils.exception.EventPlannerException;
 import christmas.utils.exception.InputException;
 import christmas.utils.parser.InputParser;
 import christmas.view.EventPlannerView;
-import java.text.NumberFormat;
 import java.util.Map;
 
 public class EventPlannerController {
@@ -66,32 +65,56 @@ public class EventPlannerController {
         return EventBenefit.create(service.findVisitDate(), service.findMenus());
     }
 
-    private void previewEventBenefit(){
+    private void previewEventBenefit() {
+        printEventBenefitsPreviewMessage();
+        printOrderedMenu();
+        printTotalPriceBeforeDiscount();
+        printGiftMenu();
+        printBenefitDetail();
+        printTotalBenefitPrice();
+        printTotalPriceAfterDiscount();
+        printDecemberEventBadge();
+    }
 
-        //1
+    // 이벤트 프리뷰 메시지 출력
+    private void printEventBenefitsPreviewMessage() {
         view.printEventBenefitsPreviewMessage(service.getVisitDate());
+    }
 
-        //2
+    // 주문 메뉴 출력
+    private void printOrderedMenu() {
         OrderedMenusDto orderedMenusDto = new OrderedMenusDto(service.findMenus());
         view.printOrderedMenu(orderedMenusDto.getResponses());
+    }
 
-        //3
+    // 할인 전 총주문 금액 출력
+    private void printTotalPriceBeforeDiscount() {
         view.printTotalPriceBeforeDiscount(service.getTotalPriceBeforeDiscount());
+    }
 
-        //4
+    // 증정 메뉴 출력
+    private void printGiftMenu() {
         view.printGiftMenu(service.isSatisfiedConditionWithGiftEvent());
+    }
 
-        //5
+    // 혜택 내역 출력
+    private void printBenefitDetail() {
         BenefitDetailDto benefitDetailDto = new BenefitDetailDto(service.findEventBenefit());
-        view.printBenefitDetail();
+        view.printBenefitDetail(benefitDetailDto.getResponses());
+    }
 
-        //6
+    // 총혜택 금액 출력
+    private void printTotalBenefitPrice() {
         view.printTotalBenefitPrice(service.getTotalBenefitPrice());
+    }
 
-        //7
+    // 할인 후 예상 결제 금액 출력
+    private void printTotalPriceAfterDiscount() {
         view.printTotalPriceAfterDiscount(service.getTotalPriceAfterDiscount());
+    }
 
-        //8
+    // 12월 이벤트 배지 출력
+    private void printDecemberEventBadge() {
         view.printDecemberEventBadge(service.getTotalBenefitPrice());
     }
 

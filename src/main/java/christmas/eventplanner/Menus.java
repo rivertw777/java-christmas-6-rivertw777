@@ -1,5 +1,7 @@
 package christmas.eventplanner;
 
+import static christmas.eventplanner.constants.EventPlannerConstraint.MINIMUM_ORDER_PRICE_FOR_BENEFIT;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -26,22 +28,25 @@ public class Menus {
     }
 
     public boolean canGetEventBenefit(){
-        return getTotalPrice()>=10000;
+        return getTotalPrice()>=MINIMUM_ORDER_PRICE_FOR_BENEFIT.getValue();
     }
 
+    // 메뉴 컬렉션의 총 주문 금액 반환
     public int getTotalPrice() {
         return menus.stream()
                 .mapToInt(Menu::getPrice)
                 .sum();
     }
 
-    public int getTotalDessertPrice() {
+    // 메뉴 컬렉션의 총 디저트 할인 금액 반환
+    public int getTotalDessertDiscountPrice() {
         return menus.stream()
                 .mapToInt(Menu::getDessertDiscountPrice)
                 .sum();
     }
 
-    public int getTotalMainPrice() {
+    // 메뉴 컬렉션의 총 메인메뉴 할인 금액 반환
+    public int getTotalMainDiscountPrice() {
         return menus.stream()
                 .mapToInt(Menu::getMainDiscountPrice)
                 .sum();

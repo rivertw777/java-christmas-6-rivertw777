@@ -13,6 +13,6 @@ public record OrderedMenusDto(Menus menus) {
     }
 
     private String getResponse(Menu menu){
-        return String.format("%s %d", menu.getName(), menu.getQuantity());
+        return String.format("%s %d개", menu.getName(), menu.getQuantity());
     }
 }

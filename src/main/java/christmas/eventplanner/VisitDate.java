@@ -18,6 +18,7 @@ public class VisitDate {
         return new VisitDate(date);
     }
 
+    // 날짜 범위 검증
     private static void checkRange(int date) {
         if (date < MIN_DATE.getValue() || date > MAX_DATE.getValue()) {
             throw EventPlannerException.of(INVALID_DATE);
