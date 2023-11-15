@@ -1,5 +1,7 @@
 package christmas.view;
 
+import static christmas.view.constants.OutputMessage.BENEFIT_DETAIL;
+import static christmas.view.constants.OutputMessage.DECEMBER_EVENT_BADGE;
 import static christmas.view.constants.OutputMessage.EVENT_BENEFITS_PREVIEW;
 import static christmas.view.constants.OutputMessage.GIFT_MENU;
 import static christmas.view.constants.OutputMessage.HELLO;
@@ -7,6 +9,8 @@ import static christmas.view.constants.OutputMessage.ASK_ORDER_MENU;
 import static christmas.view.constants.OutputMessage.ASK_VISIT_DATE;
 import static christmas.view.constants.OutputMessage.ORDER_MENU;
 import static christmas.view.constants.OutputMessage.SATISFIED_CASE;
+import static christmas.view.constants.OutputMessage.TOTAL_BENEFIT_PRICE;
+import static christmas.view.constants.OutputMessage.TOTAL_PRICE_AFTER_DISCOUNT;
 import static christmas.view.constants.OutputMessage.TOTAL_PRICE_BEFORE_DISCOUNT;
 import static christmas.view.constants.OutputMessage.UNSATISFIED_CASE;
 
@@ -59,4 +63,19 @@ public class OutputView {
         System.out.println(UNSATISFIED_CASE.getMessage());
     }
 
+    public static void printBenefitDetail() {
+        System.out.println(BENEFIT_DETAIL.getMessage());
+    }
+
+    public static void printTotalBenefitPrice(int price){
+        System.out.printf(TOTAL_BENEFIT_PRICE.getMessage(),price);
+    }
+
+    public static void printTotalPriceAfterDiscount(int price){
+        System.out.printf(TOTAL_PRICE_AFTER_DISCOUNT.getMessage(),price);
+    }
+
+    public static void printDecemberEventBadge(){
+        System.out.println(DECEMBER_EVENT_BADGE.getMessage());
+    }
 }

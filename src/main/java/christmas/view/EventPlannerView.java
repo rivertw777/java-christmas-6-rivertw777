@@ -46,13 +46,38 @@ public class EventPlannerView {
     // 증정 메뉴 출력
     public static void printGiftMenu(boolean isSatisfied){
         outputView.printGiftMenu(isSatisfied);
+        outputView.printNewLine();
+    }
+
+    // 혜택 내역 출력
+    public static void printBenefitDetail() {
+        outputView.printBenefitDetail();
+        outputView.printNewLine();
+    }
+
+    // 총 혜택 금액 출력
+    public static void printTotalBenefitPrice(int price){
+        outputView.printTotalBenefitPrice(price);
+        outputView.printNewLine();
+        outputView.printNewLine();
+    }
+
+    // 할인 후 예상 결제 금액 출력
+    public static void printTotalPriceAfterDiscount(int price){
+        outputView.printTotalPriceAfterDiscount(price);
+        outputView.printNewLine();
+        outputView.printNewLine();
+    }
+
+    // 12월 이벤트 배지 출력
+    public static void printDecemberEventBadge(){
+        outputView.printDecemberEventBadge();
+        outputView.printNewLine();
     }
 
     // 에러 메시지 출력
     public static void printErrorMessage(String message){
         outputView.printErrorMessage(message);
     }
-
-
 
 }

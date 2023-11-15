@@ -1,7 +1,5 @@
 package christmas.eventplanner;
 
-import static christmas.eventplanner.constants.EventPlannerConstraint.TARGET_PRICE_FOR_GIFT;
-
 public class EventPlannerService {
     private final EventPlannerRepository eventPlannerRepository;
 
@@ -25,6 +23,14 @@ public class EventPlannerService {
         return eventPlannerRepository.findMenus();
     }
 
+    public void saveEventBenefit(final EventBenefit eventBenefit) {
+        eventPlannerRepository.saveEventBenefit(eventBenefit);
+    }
+
+    public EventBenefit findEventBenefit(){
+        return eventPlannerRepository.findEventBenefit();
+    }
+
     // 비즈니스 로직
     // 방문 날짜 반환
     public int getVisitDate() {
@@ -37,9 +43,21 @@ public class EventPlannerService {
     }
 
     // 증정 이벤트를 만족하는지 반환
-    public boolean isTotalPriceSatisfied() {
-        return findMenus().getTotalPrice() >= TARGET_PRICE_FOR_GIFT.getValue();
+    public boolean isSatisfiedConditionWithGiftEvent() {
+        return findEventBenefit().isSatisfiedConditionWithGiftEvent();
     }
 
+    // 총 혜택 금액 반환
+    public int getTotalBenefitPrice(){
+        EventBenefit eventBenefit = findEventBenefit();
+        return eventBenefit.getRemainingDayDiscountPrice() + eventBenefit.getVisitDateDiscountPrice()+
+                eventBenefit.getSpecialDayDiscountPrice() + eventBenefit.getGiftEventBenefitPrice();
+
+    }
+
+    // 할인 후 예상 결제 금액 반환
+    public int getTotalPriceAfterDiscount(){
+        return getTotalPriceBeforeDiscount() - getTotalBenefitPrice() + findEventBenefit().getGiftEventBenefitPrice();
+    }
 
 }

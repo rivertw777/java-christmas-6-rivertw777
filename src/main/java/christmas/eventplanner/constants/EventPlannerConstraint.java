@@ -3,7 +3,8 @@ package christmas.eventplanner.constants;
 public enum EventPlannerConstraint {
     MIN_DATE(1),
     MAX_DATE(31),
-    TARGET_PRICE_FOR_GIFT(120000);
+    TARGET_PRICE_FOR_GIFT(120000),
+    CHRISTMAS(25);
 
     private final int value;
 

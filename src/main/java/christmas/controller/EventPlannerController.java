@@ -1,8 +1,10 @@
 package christmas.controller;
 
+import christmas.eventplanner.EventBenefit;
 import christmas.eventplanner.EventPlannerService;
 import christmas.eventplanner.Menus;
 import christmas.eventplanner.VisitDate;
+import christmas.eventplanner.dto.BenefitDetailDto;
 import christmas.eventplanner.dto.OrderedMenusDto;
 import christmas.utils.exception.EventPlannerException;
 import christmas.utils.exception.InputException;
@@ -31,8 +33,12 @@ public class EventPlannerController {
         Menus menus = orderMenu();
         service.saveMenus(menus);
 
+        // 이벤트 혜택 계산 및 저장
+        EventBenefit eventBenefit = calculateEventBenefit();
+        service.saveEventBenefit(eventBenefit);
+
         // 이벤트 혜택 미리보기
-        previewEventBenefits();
+        previewEventBenefit();
     }
 
     private VisitDate bookVisitDate(){
@@ -55,12 +61,36 @@ public class EventPlannerController {
         }
     }
 
-    private void previewEventBenefits(){
+    private EventBenefit calculateEventBenefit(){
+        return EventBenefit.create(service.findVisitDate(), service.findMenus());
+    }
+
+    private void previewEventBenefit(){
+        //1
         view.printEventBenefitsPreviewMessage(service.getVisitDate());
+
+        //2
         OrderedMenusDto orderedMenusDto = new OrderedMenusDto(service.findMenus());
         view.printOrderedMenu(orderedMenusDto.getResponses());
+
+        //3
         view.printTotalPriceBeforeDiscount(service.getTotalPriceBeforeDiscount());
-        view.printGiftMenu(service.isTotalPriceSatisfied());
+
+        //4
+        view.printGiftMenu(service.isSatisfiedConditionWithGiftEvent());
+
+        //5
+        BenefitDetailDto benefitDetailDto = new BenefitDetailDto(service.findEventBenefit());
+        view.printBenefitDetail();
+
+        //6
+        view.printTotalBenefitPrice(service.getTotalBenefitPrice());
+
+        //7
+        view.printTotalPriceAfterDiscount(service.getTotalPriceAfterDiscount());
+
+        //8
+        view.printDecemberEventBadge();
     }
 
 }

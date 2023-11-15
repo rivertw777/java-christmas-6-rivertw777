@@ -13,7 +13,7 @@ public class Menus {
         this.menus = menus;
     }
 
-    public static Menus create(Map<String, Integer> OrderedMenuInput) {
+    public static Menus create(final Map<String, Integer> OrderedMenuInput) {
         List<Menu> menuList = OrderedMenuInput.entrySet().stream()
                 .map(entry -> Menu.create(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
@@ -28,6 +28,18 @@ public class Menus {
     public int getTotalPrice() {
         return menus.stream()
                 .mapToInt(Menu::getPrice)
+                .sum();
+    }
+
+    public int getTotalDessertPrice() {
+        return menus.stream()
+                .mapToInt(Menu::getDessertDiscountPrice)
+                .sum();
+    }
+
+    public int getTotalMainPrice() {
+        return menus.stream()
+                .mapToInt(Menu::getMainDiscountPrice)
                 .sum();
     }
 

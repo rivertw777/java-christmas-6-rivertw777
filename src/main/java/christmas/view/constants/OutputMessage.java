@@ -9,7 +9,11 @@ public enum OutputMessage {
     TOTAL_PRICE_BEFORE_DISCOUNT("<할인 전 총주문 금액>\n%d원"),
     GIFT_MENU("<증정 메뉴>"),
     SATISFIED_CASE("샴페인 1개"),
-    UNSATISFIED_CASE("없음");
+    UNSATISFIED_CASE("없음"),
+    BENEFIT_DETAIL("<혜택 내역>"),
+    TOTAL_BENEFIT_PRICE("<총혜택 금액>\n%d원"),
+    TOTAL_PRICE_AFTER_DISCOUNT("<할인 후 예상 결제 금액>\n%d원"),
+    DECEMBER_EVENT_BADGE("<12월 이벤트 배지>");
 
     private final String message;
 
