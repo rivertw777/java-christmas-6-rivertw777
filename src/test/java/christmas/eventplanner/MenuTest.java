@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class MenuTest {
     private Menu menu1;
@@ -43,5 +44,12 @@ class MenuTest {
     @Test
     void getMainPrice2() {
         assertThat(menu1.getMainDiscountPrice()).isEqualTo(0);
+    }
+
+    @DisplayName("메뉴판에 없는 메뉴 주문시 예외 발생")
+    @Test
+    void NO_SUCH_MENU() {
+        assertThatThrownBy(() -> Menu.create("피자",1))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

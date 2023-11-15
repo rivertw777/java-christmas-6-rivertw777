@@ -1,11 +1,9 @@
 package christmas.eventplanner;
 
-import christmas.eventplanner.constants.MenuInfo;
 import static christmas.eventplanner.constants.EventPlannerConstraint.MAXIMUM_ORDER_QUANTITY;
 import static christmas.eventplanner.constants.EventPlannerConstraint.MINIMUM_ORDER_PRICE_FOR_BENEFIT;
 import static christmas.utils.constants.ErrorMessage.HAS_DUPLICATE;
 import static christmas.utils.constants.ErrorMessage.HAS_EXCESS_ORDER_COUNT;
-import static christmas.utils.constants.ErrorMessage.HAS_ONLY_BEVERAGE;
 
 import christmas.utils.exception.EventPlannerException;
 import java.util.Collections;
@@ -25,7 +23,6 @@ public class Menus {
 
         checkOrderCountWithinLimit(rawMenus);
         checkHasNoDuplicate(rawMenus);
-        //checkHasOnlyBeverages(rawMenus);
 
         return new Menus(rawMenus);
     }
@@ -81,19 +78,6 @@ public class Menus {
                 throw EventPlannerException.of(HAS_DUPLICATE);
             }
             menuNames.add(name);
-        }
-    }
-
-    // 메뉴 컬렉션에 음료 타입의 주문만 있는지 확인
-    public static void checkHasOnlyBeverages(List<Menu> rawMenus) {
-        boolean hasBeverage = rawMenus.stream()
-                .map(Menu::getName)
-                .map(MenuInfo::valueOf)
-                .map(MenuInfo::getType)
-                .allMatch(type -> type.equals("Beverage"));
-
-        if (!hasBeverage) {
-            throw EventPlannerException.of(HAS_ONLY_BEVERAGE);
         }
     }
 
