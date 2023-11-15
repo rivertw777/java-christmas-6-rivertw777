@@ -25,6 +25,10 @@ public class Menus {
         return Collections.unmodifiableList(menus);
     }
 
+    public boolean canGetEventBenefit(){
+        return getTotalPrice()>=10000;
+    }
+
     public int getTotalPrice() {
         return menus.stream()
                 .mapToInt(Menu::getPrice)

@@ -10,6 +10,7 @@ import christmas.utils.exception.EventPlannerException;
 import christmas.utils.exception.InputException;
 import christmas.utils.parser.InputParser;
 import christmas.view.EventPlannerView;
+import java.text.NumberFormat;
 import java.util.Map;
 
 public class EventPlannerController {
@@ -66,6 +67,7 @@ public class EventPlannerController {
     }
 
     private void previewEventBenefit(){
+
         //1
         view.printEventBenefitsPreviewMessage(service.getVisitDate());
 
@@ -90,7 +92,7 @@ public class EventPlannerController {
         view.printTotalPriceAfterDiscount(service.getTotalPriceAfterDiscount());
 
         //8
-        view.printDecemberEventBadge();
+        view.printDecemberEventBadge(service.getTotalBenefitPrice());
     }
 
 }

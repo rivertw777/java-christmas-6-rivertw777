@@ -21,10 +21,13 @@ public class EventBenefit {
         return new EventBenefit(visitDate.getDate(), menus);
     }
 
+
     // 크리스마스 디데이 할인 금액 반환
     public int getRemainingDayDiscountPrice(){
-        if (isSatisfiedConditionWithRemainingDayDiscount()){
-            return calculateRemainingDayDiscountPrice();
+        if(menus.canGetEventBenefit()) {
+            if (isSatisfiedConditionWithRemainingDayDiscount()) {
+                return calculateRemainingDayDiscountPrice();
+            }
         }
         return 0;
     }
@@ -44,10 +47,13 @@ public class EventBenefit {
 
     // 방문 날짜가 주말인지 할인인지에 따라 할인 금액 반환
     public int getVisitDateDiscountPrice(){
-        if(isWeekend()){
-            return getWeekendDiscountPrice();
+        if(menus.canGetEventBenefit()) {
+            if (isWeekend()) {
+                return getWeekendDiscountPrice();
+            }
+            return getWeekdayDiscountPrice();
         }
-        return getWeekdayDiscountPrice();
+        return 0;
     }
 
     // 주말인지 아닌지 반환
@@ -69,8 +75,11 @@ public class EventBenefit {
 
     // 특별 할인 적용 금액 반환
     public int getSpecialDayDiscountPrice(){
-        if(isSpecialDay()){
-            return 1000;
+        if(menus.canGetEventBenefit()) {
+            if (isSpecialDay()) {
+                return 1000;
+            }
+            return 0;
         }
         return 0;
     }
@@ -84,8 +93,11 @@ public class EventBenefit {
 
     // 증정 이벤트 혜택 금액 반환
     public int getGiftEventBenefitPrice(){
-        if (isSatisfiedConditionWithGiftEvent()){
-            return calculateEventBenefitPrice();
+        if(menus.canGetEventBenefit()) {
+            if (isSatisfiedConditionWithGiftEvent()) {
+                return calculateEventBenefitPrice();
+            }
+            return 0;
         }
         return 0;
     }

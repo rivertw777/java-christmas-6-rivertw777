@@ -50,7 +50,7 @@ public class OutputView {
         responses.forEach(System.out::println);
     }
 
-    public static void printTotalPriceBeforeDiscount(int price){
+    public static void printTotalPriceBeforeDiscount(String price){
         System.out.printf(TOTAL_PRICE_BEFORE_DISCOUNT.getMessage(),price);
     }
 
@@ -67,15 +67,15 @@ public class OutputView {
         System.out.println(BENEFIT_DETAIL.getMessage());
     }
 
-    public static void printTotalBenefitPrice(int price){
+    public static void printTotalBenefitPrice(String price){
         System.out.printf(TOTAL_BENEFIT_PRICE.getMessage(),price);
     }
 
-    public static void printTotalPriceAfterDiscount(int price){
+    public static void printTotalPriceAfterDiscount(String price){
         System.out.printf(TOTAL_PRICE_AFTER_DISCOUNT.getMessage(),price);
     }
 
-    public static void printDecemberEventBadge(){
+    public static void printDecemberEventBadge(int price){
         System.out.println(DECEMBER_EVENT_BADGE.getMessage());
     }
 }
