@@ -2,6 +2,9 @@ package christmas.view;
 
 import static christmas.view.constants.OutputMessage.BENEFIT_DETAIL;
 import static christmas.view.constants.OutputMessage.DECEMBER_EVENT_BADGE;
+import static christmas.view.constants.OutputMessage.EVENT_BADGE_SANTA;
+import static christmas.view.constants.OutputMessage.EVENT_BADGE_STAR;
+import static christmas.view.constants.OutputMessage.EVENT_BADGE_TREE;
 import static christmas.view.constants.OutputMessage.EVENT_BENEFITS_PREVIEW;
 import static christmas.view.constants.OutputMessage.GIFT_MENU;
 import static christmas.view.constants.OutputMessage.HELLO;
@@ -77,5 +80,19 @@ public class OutputView {
 
     public static void printDecemberEventBadge(int price){
         System.out.println(DECEMBER_EVENT_BADGE.getMessage());
+        if(price>=20000){
+            System.out.println(EVENT_BADGE_SANTA.getMessage());
+            return;
+        }
+        if(price>=10000){
+            System.out.println(EVENT_BADGE_TREE.getMessage());
+            return;
+        }
+        if(price>=5000){
+            System.out.println(EVENT_BADGE_STAR.getMessage());
+            return;
+        }
+        System.out.println(UNSATISFIED_CASE.getMessage());
     }
+
 }

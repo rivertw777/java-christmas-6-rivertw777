@@ -13,7 +13,10 @@ public enum OutputMessage {
     BENEFIT_DETAIL("<혜택 내역>"),
     TOTAL_BENEFIT_PRICE("<총혜택 금액>\n%s원"),
     TOTAL_PRICE_AFTER_DISCOUNT("<할인 후 예상 결제 금액>\n%s원"),
-    DECEMBER_EVENT_BADGE("<12월 이벤트 배지>");
+    DECEMBER_EVENT_BADGE("<12월 이벤트 배지>"),
+    EVENT_BADGE_STAR("별"),
+    EVENT_BADGE_TREE("트리"),
+    EVENT_BADGE_SANTA("산타");
 
     private final String message;
 
